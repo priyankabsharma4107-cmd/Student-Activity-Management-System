@@ -162,6 +162,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
+    message.style.color = "#ddd";
     message.textContent = "Logging in...";
 
     try {
@@ -175,17 +176,26 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             },
 
             body: JSON.stringify({
-                email,
-                password
+                email: email,
+                password: password
             })
 
         });
 
-        const result = await response.json();
+        const text = await response.text();
+
+        let result;
+
+        try {
+            result = JSON.parse(text);
+        } catch {
+            throw new Error(
+                `Server returned an invalid response (HTTP ${response.status})`
+            );
+        }
 
         if (result.success) {
 
-            // Store only logged-in student's information
             localStorage.setItem(
                 "currentStudent",
                 JSON.stringify(result.student)
@@ -203,7 +213,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         } else {
 
             message.style.color = "#ffb3b3";
-            message.textContent = result.message;
+            message.textContent =
+                result.message || "Login failed.";
 
         }
 
@@ -214,7 +225,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         message.style.color = "#ffb3b3";
 
         message.textContent =
-            "Unable to connect to server. Please make sure Flask is running.";
+            error.message || "Something went wrong.";
 
     }
 
