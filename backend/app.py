@@ -7,6 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+
 # =========================================================
 # FRONTEND PATH
 # =========================================================
@@ -588,7 +589,32 @@ def dashboard(student_id):
         return jsonify({
             "success": True,
             "registrations": registrations,
-            "
-            if __name__ == "__main__":
+            "certificates": certificates,
+            "achievements": achievements,
+            "participation": participation
+        }), 200
+
+    except mysql.connector.Error as e:
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to fetch dashboard data.",
+            "error": str(e)
+        }), 500
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
+
+
+# =========================================================
+# RUN APPLICATION
+# =========================================================
+
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
