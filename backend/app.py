@@ -1,10 +1,18 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+# =========================================================
+# FRONTEND PATH
+# =========================================================
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 
 # =========================================================
@@ -13,23 +21,30 @@ CORS(app)
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Root@123",
-        database="student_activity_db"
+        host=os.environ.get("DB_HOST", "localhost"),
+        user=os.environ.get("DB_USER", "root"),
+        password=os.environ.get("DB_PASSWORD", "Root@123"),
+        database=os.environ.get("DB_NAME", "student_activity_db"),
+        port=int(os.environ.get("DB_PORT", "3306"))
     )
 
 
 # =========================================================
-# HOME
+# HOME - FRONTEND
 # =========================================================
 
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({
-        "success": True,
-        "message": "Student Activity Management System API is running."
-    })
+    return send_from_directory(FRONTEND_DIR, "index.html")
+
+
+# =========================================================
+# FRONTEND FILES
+# =========================================================
+
+@app.route("/<path:filename>")
+def frontend_files(filename):
+    return send_from_directory(FRONTEND_DIR, filename)
 
 
 # =========================================================
@@ -524,54 +539,6 @@ def get_participation(student_id):
 
 
 # =========================================================
-# STUDENT NOTIFICATIONS
-# =========================================================
-
-@app.route("/api/notifications/<int:student_id>", methods=["GET"])
-def get_notifications(student_id):
-
-    conn = None
-    cursor = None
-
-    try:
-
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-
-        cursor.execute("""
-            SELECT
-                notification_id,
-                title,
-                message,
-                is_read,
-                created_at
-            FROM notifications
-            WHERE student_id = %s
-            ORDER BY created_at DESC
-        """, (student_id,))
-
-        notifications = cursor.fetchall()
-
-        return jsonify(notifications), 200
-
-    except mysql.connector.Error as e:
-
-        return jsonify({
-            "success": False,
-            "message": "Unable to fetch notifications.",
-            "error": str(e)
-        }), 500
-
-    finally:
-
-        if cursor:
-            cursor.close()
-
-        if conn:
-            conn.close()
-
-
-# =========================================================
 # STUDENT DASHBOARD
 # =========================================================
 
@@ -586,7 +553,6 @@ def dashboard(student_id):
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # Registrations
         cursor.execute("""
             SELECT COUNT(*) AS total
             FROM registrations
@@ -595,7 +561,6 @@ def dashboard(student_id):
 
         registrations = cursor.fetchone()["total"]
 
-        # Certificates
         cursor.execute("""
             SELECT COUNT(*) AS total
             FROM certificates
@@ -604,7 +569,6 @@ def dashboard(student_id):
 
         certificates = cursor.fetchone()["total"]
 
-        # Achievements
         cursor.execute("""
             SELECT COUNT(*) AS total
             FROM achievements
@@ -613,7 +577,6 @@ def dashboard(student_id):
 
         achievements = cursor.fetchone()["total"]
 
-        # Participation
         cursor.execute("""
             SELECT COUNT(*) AS total
             FROM participation
@@ -625,31 +588,4 @@ def dashboard(student_id):
         return jsonify({
             "success": True,
             "registrations": registrations,
-            "certificates": certificates,
-            "achievements": achievements,
-            "participation": participation
-        }), 200
-
-    except mysql.connector.Error as e:
-
-        return jsonify({
-            "success": False,
-            "message": "Unable to load dashboard.",
-            "error": str(e)
-        }), 500
-
-    finally:
-
-        if cursor:
-            cursor.close()
-
-        if conn:
-            conn.close()
-
-
-# =========================================================
-# RUN FLASK SERVER
-# =========================================================
-
-if __name__ == "__main__":
-    app.run(debug=True)
+            "
