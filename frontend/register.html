@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Student Activity Management System</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(108, 92, 231, 0.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(79, 140, 255, 0.14),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f7f6ff 0%,
+                    #f9fbff 50%,
+                    #f5f7ff 100%
+                );
+
+            color: #191929;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px 20px;
+
+            overflow-x: hidden;
+        }
+
+
+        /* Decorative circles */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(108, 92, 231, 0.10),
+                    rgba(79, 140, 255, 0.06)
+                );
+
+            top: -120px;
+            left: -100px;
+
+            pointer-events: none;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(79, 140, 255, 0.08),
+                    rgba(108, 92, 231, 0.08)
+                );
+
+            bottom: -150px;
+            right: -100px;
+
+            pointer-events: none;
+        }
+
+
+        /* Main wrapper */
+
+        .register-wrapper {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            background: rgba(255, 255, 255, 0.82);
+
+            border: 1px solid rgba(255, 255, 255, 0.9);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(45, 40, 100, 0.12);
+
+            backdrop-filter: blur(18px);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* Left section */
+
+        .register-intro {
+
+            position: relative;
+
+            padding: 55px 45px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #37326d 0%,
+                    #5f54c5 55%,
+                    #4b8de7 100%
+                );
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        .register-intro::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 50%;
+
+            top: -80px;
+            right: -80px;
+        }
+
+
+        .register-intro::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 50%;
+
+            bottom: -90px;
+            left: -70px;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 55px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .brand-icon {
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 13px;
+
+            background: rgba(255,255,255,0.15);
+
+            border: 1px solid rgba(255,255,255,0.20);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        .brand span {
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .intro-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .intro-tag {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.10);
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+        }
+
+
+        .intro-content h1 {
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 35px;
+
+            line-height: 1.18;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .intro-content h1 span {
+
+            color: #cfcaff;
+        }
+
+
+        .intro-content p {
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            color: #e7e5ff;
+
+            max-width: 340px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .feature-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 11px;
+
+            color: #eeeeff;
+        }
+
+
+        .feature i {
+
+            width: 25px;
+            height: 25px;
+
+            border-radius: 8px;
+
+            background: rgba(255,255,255,0.12);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+        }
+
+
+        /* Right form section */
+
+        .register-form-section {
+
+            padding: 45px 50px;
+
+            background: rgba(255,255,255,0.96);
+        }
+
+
+        .form-heading {
+
+            margin-bottom: 27px;
+        }
+
+
+        .form-heading h2 {
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 25px;
+
+            letter-spacing: -0.5px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-heading p {
+
+            color: #858598;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* Form */
+
+        .register-form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 13px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .form-group label {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #38384a;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9a98ad;
+
+            font-size: 11px;
+
+            pointer-events: none;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            height: 43px;
+
+            padding: 0 13px 0 38px;
+
+            border: 1px solid #e5e4ed;
+
+            border-radius: 10px;
+
+            background: #fafaff;
+
+            color: #242436;
+
+            outline: none;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 11px;
+
+            transition: all 0.2s ease;
+        }
+
+
+        .form-group select {
+
+            appearance: none;
+
+            cursor: pointer;
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #aaa9b9;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #7568e8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(108,92,231,0.09);
+        }
+
+
+        .select-wrapper::after {
+
+            content: "\f107";
+
+            font-family: "Font Awesome 6 Free";
+
+            font-weight: 900;
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #85849a;
+
+            pointer-events: none;
+
+            font-size: 10px;
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: none;
+
+            color: #9998aa;
+
+            cursor: pointer;
+
+            font-size: 11px;
+        }
+
+
+        /* Message */
+
+        .form-message {
+
+            min-height: 16px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            font-weight: 500;
+        }
+
+
+        .form-message.success {
+
+            color: #1eae72;
+        }
+
+
+        .form-message.error {
+
+            color: #df5757;
+        }
+
+
+        /* Button */
+
+        .create-btn {
+
+            width: 100%;
+
+            height: 45px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c5ce7,
+                    #4f8cff
+                );
+
+            color: white;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(91, 83, 210, 0.20);
+
+            transition: all 0.2s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+        }
+
+
+        .create-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(91, 83, 210, 0.28);
+        }
+
+
+        .create-btn:active {
+
+            transform: translateY(0);
+        }
+
+
+        .create-btn:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* Login */
+
+        .login-link {
+
+            text-align: center;
+
+            margin-top: 19px;
+
+            font-size: 10px;
+
+            color: #89889a;
+        }
+
+
+        .login-link a {
+
+            color: #6357d4;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            margin-left: 3px;
+        }
+
+
+        .login-link a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* Security note */
+
+        .security-note {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 15px;
+
+            color: #aaa9b7;
+
+            font-size: 8px;
+        }
+
+
+        .security-note i {
+
+            color: #6c5ce7;
+
+            font-size: 9px;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 850px) {
+
+            .register-wrapper {
+
+                max-width: 550px;
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .register-intro {
+
+                padding: 32px;
+
+                min-height: 280px;
+            }
+
+
+            .brand {
+
+                margin-bottom: 25px;
+            }
+
+
+            .intro-content h1 {
+
+                font-size: 28px;
+            }
+
+
+            .feature-list {
+
+                display: grid;
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .register-form-section {
+
+                padding: 35px;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .register-wrapper {
+
+                border-radius: 20px;
+            }
+
+
+            .register-intro {
+
+                padding: 28px 24px;
+            }
+
+
+            .register-form-section {
+
+                padding: 28px 22px;
+            }
+
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .feature-list {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .intro-content h1 {
+
+                font-size: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="register-wrapper">
+
+
+        <!-- LEFT SIDE -->
+
+        <section class="register-intro">
+
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <span>
+                    Student Activity Management
+                </span>
+
+            </div>
+
+
+            <div class="intro-content">
+
+
+                <div class="intro-tag">
+
+                    <i class="fa-solid fa-sparkles"></i>
+
+                    Student Portal
+
+                </div>
+
+
+                <h1>
+
+                    Manage your
+                    <span>college journey.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Keep your activities, registrations,
+                    achievements and certificates organised
+                    in one smart platform.
+
+                </p>
+
+
+                <div class="feature-list">
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                        <span>
+                            Track your activities
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        <span>
+                            Monitor your progress
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-award"></i>
+
+                        <span>
+                            Store your achievements
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-robot"></i>
+
+                        <span>
+                            Get help from NOVA
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+
+        <section class="register-form-section">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Enter your details to get started.
+                </p>
+
+            </div>
+
+
+            <form
+                class="register-form"
+                id="registerForm"
+            >
+
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-user input-icon"></i>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope input-icon"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Department + Year -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-building-columns input-icon"></i>
+
+                            <input
+                                type="text"
+                                id="department"
+                                name="department"
+                                placeholder="e.g. BCA"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Year
+                        </label>
+
+                        <div class="input-wrapper select-wrapper">
+
+                            <i class="fa-regular fa-calendar input-icon"></i>
+
+                            <select
+                                id="year"
+                                name="year"
+                                required
+                            >
+
+                                <option value="">
+                                    Select year
+                                </option>
+
+                                <option value="1">
+                                    First Year
+                                </option>
+
+                                <option value="2">
+                                    Second Year
+                                </option>
+
+                                <option value="3">
+                                    Third Year
+                                </option>
+
+                                <option value="4">
+                                    Fourth Year
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock input-icon"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-shield-halved input-icon"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="toggleConfirmPassword"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Message -->
+
+                <div
+                    id="registerMessage"
+                    class="form-message"
+                ></div>
+
+
+                <!-- Button -->
+
+                <button
+                    type="submit"
+                    id="createAccountBtn"
+                    class="create-btn"
+                >
+
+                    <span id="buttonText">
+                        Create Account
+                    </span>
+
+                    <i
+                        id="buttonIcon"
+                        class="fa-solid fa-arrow-right"
+                    ></i>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- Login -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- Security -->
+
+            <div class="security-note">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Your account information is securely stored.
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+    <script>
+
+
+        const API_URL = "http://127.0.0.1:5000";
+
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+
+        const registerMessage =
+            document.getElementById("registerMessage");
+
+
+        const createAccountBtn =
+            document.getElementById("createAccountBtn");
+
+
+        const buttonText =
+            document.getElementById("buttonText");
+
+
+        const buttonIcon =
+            document.getElementById("buttonIcon");
+
+
+        /* =========================
+           PASSWORD VISIBILITY
+        ========================= */
+
+
+        function setupPasswordToggle(
+            buttonId,
+            inputId
+        ) {
+
+            const button =
+                document.getElementById(buttonId);
+
+            const input =
+                document.getElementById(inputId);
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const icon =
+                        button.querySelector("i");
+
+
+                    if (input.type === "password") {
+
+                        input.type = "text";
+
+                        icon.className =
+                            "fa-regular fa-eye-slash";
+
+                    } else {
+
+                        input.type = "password";
+
+                        icon.className =
+                            "fa-regular fa-eye";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        setupPasswordToggle(
+            "togglePassword",
+            "password"
+        );
+
+
+        setupPasswordToggle(
+            "toggleConfirmPassword",
+            "confirmPassword"
+        );
+
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+
+        registerForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById("name")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document.getElementById("email")
+                    .value
+                    .trim();
+
+
+                const department =
+                    document.getElementById("department")
+                    .value
+                    .trim();
+
+
+                const year =
+                    document.getElementById("year")
+                    .value;
+
+
+                const password =
+                    document.getElementById("password")
+                    .value;
+
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword")
+                    .value;
+
+
+                registerMessage.textContent = "";
+
+                registerMessage.className =
+                    "form-message";
+
+
+                /* Password match */
+
+                if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    registerMessage.textContent =
+                        "Passwords do not match.";
+
+                    registerMessage.classList.add(
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* Password length */
+
+                if (password.length < 6) {
+
+                    registerMessage.textContent =
+                        "Password must be at least 6 characters.";
+
+                    registerMessage.classList.add(
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* Disable button */
+
+                createAccountBtn.disabled =
+                    true;
+
+
+                buttonText.textContent =
+                    "Creating Account...";
+
+
+                buttonIcon.className =
+                    "fa-solid fa-spinner fa-spin";
+
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            `${API_URL}/api/register`,
+                            {
+
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        name: name,
+
+                                        email: email,
+
+                                        password: password,
+
+                                        department:
+                                            department,
+
+                                        year: year
+
+                                    })
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (response.ok) {
+
+
+                        registerMessage.textContent =
+                            data.message ||
+                            "Account created successfully!";
+
+                        registerMessage.classList.add(
+                            "success"
+                        );
+
+
+                        buttonText.textContent =
+                            "Account Created";
+
+
+                        buttonIcon.className =
+                            "fa-solid fa-check";
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            1200
+                        );
+
+
+                    } else {
+
+
+                        registerMessage.textContent =
+                            data.message ||
+                            "Unable to create account.";
+
+                        registerMessage.classList.add(
+                            "error"
+                        );
+
+
+                        createAccountBtn.disabled =
+                            false;
+
+
+                        buttonText.textContent =
+                            "Create Account";
+
+
+                        buttonIcon.className =
+                            "fa-solid fa-arrow-right";
+
+                    }
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Registration Error:",
+                        error
+                    );
+
+
+                    registerMessage.textContent =
+                        "Cannot connect to server. Make sure Flask is running.";
+
+                    registerMessage.classList.add(
+                        "error"
+                    );
+
+
+                    createAccountBtn.disabled =
+                        false;
+
+
+                    buttonText.textContent =
+                        "Create Account";
+
+
+                    buttonIcon.className =
+                        "fa-solid fa-arrow-right";
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

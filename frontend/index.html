@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Activity Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">SA</div>
+
+            <div>
+                <h2>Student Activity</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>▣</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-section="activities">
+                <span>◉</span>
+                Activities
+            </button>
+
+            <button class="nav-item" data-section="registrations">
+                <span>✓</span>
+                My Registrations
+            </button>
+
+            <button class="nav-item" data-section="certificates">
+                <span>▤</span>
+                Certificates
+            </button>
+
+            <button class="nav-item" data-section="achievements">
+                <span>★</span>
+                Achievements
+            </button>
+
+            <button class="nav-item" data-section="analytics">
+                <span>◫</span>
+                Analytics
+            </button>
+
+            <button class="nav-item" data-section="settings">
+                <span>⚙</span>
+                Settings
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item logout-btn" id="logoutBtn">
+                <span>↪</span>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu" id="mobileMenu">
+                    ☰
+                </button>
+
+                <div>
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p>Manage your college activities and achievements</p>
+                </div>
+
+            </div>
+
+
+            <!-- DYNAMIC USER PROFILE -->
+
+            <div class="profile">
+
+                <div class="profile-avatar" id="profileInitials">
+                    PS
+                </div>
+
+                <div class="profile-info">
+                    <strong id="profileName">Priyanka Sharma</strong>
+                    <span id="profileDepartment">BCA • First Year</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE CONTENT ================= -->
+
+        <div class="page-content">
+
+
+            <!-- ================================================= -->
+            <!-- DASHBOARD -->
+            <!-- ================================================= -->
+
+            <section id="dashboard" class="page-section active">
+
+                <div class="welcome-card">
+
+                    <div>
+                        <span class="welcome-label">WELCOME BACK 👋</span>
+
+                        <h2>
+                            Hello, <span id="welcomeName">Student</span>!
+                        </h2>
+
+                        <p>
+                            Keep track of your activities, achievements
+                            and participation all in one place.
+                        </p>
+                    </div>
+
+                    <div class="welcome-icon">
+                        🎓
+                    </div>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ◉
+                        </div>
+
+                        <div>
+                            <span>Activities Joined</span>
+                            <h3 id="statRegistrations">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ▤
+                        </div>
+
+                        <div>
+                            <span>Certificates</span>
+                            <h3 id="statCertificates">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ★
+                        </div>
+
+                        <div>
+                            <span>Achievements</span>
+                            <h3 id="statAchievements">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>Participation</span>
+                            <h3 id="statParticipation">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- UPCOMING ACTIVITIES -->
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Upcoming Activities</h3>
+                                <p>Activities you can participate in</p>
+                            </div>
+
+                            <button class="text-btn" data-section="activities">
+                                View All
+                            </button>
+
+                        </div>
+
+                        <div id="upcomingActivities" class="activity-list">
+
+                            <div class="empty-state">
+                                Loading activities...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- NOVA -->
+
+                    <div class="content-card nova-preview">
+
+                        <div class="card-header">
+
+                            <div class="nova-title">
+
+                                <div class="nova-icon">
+                                    ✦
+                                </div>
+
+                                <div>
+                                    <h3>NOVA AI Assistant</h3>
+                                    <p>Your personal activity assistant</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="nova-message">
+
+                            <strong>
+                                Hi! I'm NOVA 👋
+                            </strong>
+
+                            <p>
+                                I can help you explore activities,
+                                registrations, certificates and
+                                your participation.
+                            </p>
+
+                        </div>
+
+
+                        <div class="quick-questions">
+
+                            <button class="quick-question"
+                                    data-question="Show my registered activities">
+                                My registrations
+                            </button>
+
+                            <button class="quick-question"
+                                    data-question="Show my certificates">
+                                My certificates
+                            </button>
+
+                            <button class="quick-question"
+                                    data-question="Show my achievements">
+                                My achievements
+                            </button>
+
+                            <button class="quick-question"
+                                    data-question="What activities are available?">
+                                Available activities
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Recent Activity</h3>
+                            <p>Your latest participation records</p>
+                        </div>
+
+                    </div>
+
+                    <div id="recentActivity">
+
+                        <div class="empty-state">
+                            Your recent activity will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- ACTIVITIES -->
+            <!-- ================================================= -->
+
+            <section id="activities" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Activities</h2>
+
+                        <p>
+                            Explore and register for upcoming college activities.
+                        </p>
+                    </div>
+
+                    <div class="search-box">
+
+                        <input
+                            type="text"
+                            id="activitySearch"
+                            placeholder="Search activities..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div id="activitiesContainer" class="activities-grid">
+
+                    <div class="empty-state">
+                        Loading activities...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- REGISTRATIONS -->
+            <!-- ================================================= -->
+
+            <section id="registrations" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>My Registrations</h2>
+
+                        <p>
+                            Activities you have registered for.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Date</th>
+                                    <th>Venue</th>
+                                    <th>Status</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="registrationsTable">
+
+                                <tr>
+                                    <td colspan="4" class="empty-table">
+                                        Loading registrations...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- CERTIFICATES -->
+            <!-- ================================================= -->
+
+            <section id="certificates" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Certificates</h2>
+
+                        <p>
+                            Your certificates and participation records.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="certificatesContainer" class="certificate-grid">
+
+                    <div class="empty-state">
+                        Loading certificates...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- ACHIEVEMENTS -->
+            <!-- ================================================= -->
+
+            <section id="achievements" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Achievements</h2>
+
+                        <p>
+                            Your accomplishments and recognitions.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="achievementsContainer" class="achievement-grid">
+
+                    <div class="empty-state">
+                        Loading achievements...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- ANALYTICS -->
+            <!-- ================================================= -->
+
+            <section id="analytics" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Analytics</h2>
+
+                        <p>
+                            Track your activity participation and progress.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-grid">
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Activity Overview</h3>
+                                <p>Your participation statistics</p>
+                            </div>
+
+                        </div>
+
+                        <div class="chart-container">
+
+                            <canvas id="activityChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Progress</h3>
+                                <p>Your overall activity progress</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-item">
+
+                            <div class="progress-label">
+                                <span>Activities</span>
+                                <strong id="analyticsActivities">0</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    id="activityProgress"
+                                    style="width: 0%;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-item">
+
+                            <div class="progress-label">
+                                <span>Certificates</span>
+                                <strong id="analyticsCertificates">0</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    id="certificateProgress"
+                                    style="width: 0%;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-item">
+
+                            <div class="progress-label">
+                                <span>Achievements</span>
+                                <strong id="analyticsAchievements">0</strong>
+                            </div>
+
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    id="achievementProgress"
+                                    style="width: 0%;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- SETTINGS -->
+            <!-- ================================================= -->
+
+            <section id="settings" class="page-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Settings</h2>
+
+                        <p>
+                            Manage your account information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card settings-card">
+
+                    <div class="settings-profile">
+
+                        <div
+                            class="large-profile-avatar"
+                            id="settingsInitials">
+                            PS
+                        </div>
+
+                        <div>
+
+                            <h3 id="settingsName">
+                                Priyanka Sharma
+                            </h3>
+
+                            <p id="settingsDepartment">
+                                BCA • First Year
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-details">
+
+                        <div class="detail-item">
+
+                            <span>Name</span>
+
+                            <strong id="settingsFullName">
+                                Priyanka Sharma
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>Email</span>
+
+                            <strong id="settingsEmail">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>Department</span>
+
+                            <strong id="settingsDept">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>Year</span>
+
+                            <strong id="settingsYear">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================================= -->
+            <!-- NOVA CHAT -->
+            <!-- ================================================= -->
+
+            <section id="nova" class="page-section">
+
+                <div class="nova-full">
+
+                    <div class="nova-header">
+
+                        <div class="nova-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <h2>NOVA AI Assistant</h2>
+
+                            <p>
+                                Your intelligent student activity assistant
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="chat-messages"
+                        id="chatMessages">
+
+                        <div class="nova-chat-message">
+
+                            <strong>NOVA</strong>
+
+                            <p>
+                                Hi! I'm NOVA. How can I help you today?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-input-area">
+
+                        <input
+                            type="text"
+                            id="chatInput"
+                            placeholder="Ask NOVA something..."
+                        >
+
+                        <button type="button" id="sendMessage"
+    onclick="sendNovaMessage(document.getElementById('chatInput'), document.getElementById('chatMessages'))">
+    Send
+</button>
+                        
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+        /*
+         * IMPORTANT:
+         * This part only handles the PROFILE information.
+         *
+         * The main application functionality is still handled
+         * by frontend/script.js.
+         */
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const currentStudent =
+                JSON.parse(localStorage.getItem("currentStudent"));
+
+            if (!currentStudent) {
+                window.location.href = "login.html";
+                return;
+            }
+
+
+            /* =========================
+               PROFILE ELEMENTS
+            ========================= */
+
+            const profileInitials =
+                document.getElementById("profileInitials");
+
+            const profileName =
+                document.getElementById("profileName");
+
+            const profileDepartment =
+                document.getElementById("profileDepartment");
+
+            const welcomeName =
+                document.getElementById("welcomeName");
+
+
+            /* =========================
+               GET INITIALS
+            ========================= */
+
+            const initials = currentStudent.name
+                .trim()
+                .split(/\s+/)
+                .filter(word => word.length > 0)
+                .map(word => word.charAt(0))
+                .join("")
+                .substring(0, 2)
+                .toUpperCase();
+
+
+            /* =========================
+               PROFILE
+            ========================= */
+
+            if (profileInitials) {
+                profileInitials.textContent = initials;
+            }
+
+            if (profileName) {
+                profileName.textContent = currentStudent.name;
+            }
+
+            if (profileDepartment) {
+
+                const department =
+                    currentStudent.department || "Department";
+
+                const year =
+                    currentStudent.year
+                        ? `Year ${currentStudent.year}`
+                        : "";
+
+                profileDepartment.textContent =
+                    `${department} • ${year}`;
+            }
+
+
+            /* =========================
+               WELCOME MESSAGE
+            ========================= */
+
+            if (welcomeName) {
+                welcomeName.textContent =
+                    currentStudent.name.split(" ")[0];
+            }
+
+
+            /* =========================
+               SETTINGS
+            ========================= */
+
+            const settingsInitials =
+                document.getElementById("settingsInitials");
+
+            const settingsName =
+                document.getElementById("settingsName");
+
+            const settingsDepartment =
+                document.getElementById("settingsDepartment");
+
+            const settingsFullName =
+                document.getElementById("settingsFullName");
+
+            const settingsEmail =
+                document.getElementById("settingsEmail");
+
+            const settingsDept =
+                document.getElementById("settingsDept");
+
+            const settingsYear =
+                document.getElementById("settingsYear");
+
+
+            if (settingsInitials) {
+                settingsInitials.textContent = initials;
+            }
+
+            if (settingsName) {
+                settingsName.textContent =
+                    currentStudent.name;
+            }
+
+            if (settingsFullName) {
+                settingsFullName.textContent =
+                    currentStudent.name;
+            }
+
+            if (settingsEmail) {
+                settingsEmail.textContent =
+                    currentStudent.email || "-";
+            }
+
+            if (settingsDept) {
+                settingsDept.textContent =
+                    currentStudent.department || "-";
+            }
+
+            if (settingsYear) {
+                settingsYear.textContent =
+                    currentStudent.year
+                        ? `Year ${currentStudent.year}`
+                        : "-";
+            }
+
+            if (settingsDepartment) {
+
+                settingsDepartment.textContent =
+                    `${currentStudent.department || "Department"} • Year ${currentStudent.year || ""}`;
+
+            }
+
+        });
+
+    </script>
+
+
+    <!-- MAIN PROJECT SCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
